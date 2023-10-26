@@ -1,0 +1,25 @@
+# Workflow simples
+# pra gente conhecer github actions
+name: Deploy da nossa pasta dist
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mostrando em que pasta estamos no ubuntu
+        run: echo $(pwd)
+      - name: olhando quais arquivos tenho dentro dessa pasta
+        run: ls -la
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+      
